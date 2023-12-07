@@ -28,6 +28,9 @@ function App() {
         </div>
         <div className="d-flex">
 <Card/>
+<Card/>
+<Card/>
+<Card/>
           {/* <div className="card">
             <img
               className="trainers__photo"
