@@ -18,7 +18,7 @@ const Drawer = () => {
             ></div>
 
             <div className="mr-20">
-              <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
+              <p  className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
               <b>120 £</b>
             </div>
             <img className="remove-btn" src={removeBtn} alt="Remove icon" />
