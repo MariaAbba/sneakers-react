@@ -1,15 +1,19 @@
+import { useState } from 'react'
 import heart from './../../img/heart.svg'
 import plus from './../../img/plus.svg'
-import './card.css'
+import checked from './../../img/checked.svg'
+import './card.scss'
 
-const Card = ({ title, price, img, onClick }) => {
-// const onClickButton = () => {
-//   alert(1)
-// }
+const Card = ({ title, price, img, clickOnPlus, clickOnFavorite }) => {
+  const [isAdded, setIsAdded] = useState(false)
+
+  const onClickPlus = () => {
+    setIsAdded(!isAdded)
+  }
 
   return (
     <div className="card">
-      <div className="favourite">
+      <div className="favourite" onClick={clickOnFavorite}>
         <img src={heart} alt="icon" />
       </div>
       <img className="trainers__photo" src={img} alt="Trainers-photo" />
@@ -19,14 +23,15 @@ const Card = ({ title, price, img, onClick }) => {
           <span>Price: </span>
           <b>{price} £</b>
         </div>
-        <button className="card__btn" onClick={() => onClick()}>
-          <img id="plus-btn" src={plus} alt="plusIcon" />
-        </button>
+        <img
+          id="plus-btn"
+          alt="plusIcon"
+          src={isAdded ? checked : plus}
+          onClick={() => onClickPlus()}
+        />
       </div>
     </div>
   )
 }
 
 export default Card
-
-

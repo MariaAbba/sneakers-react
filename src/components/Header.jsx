@@ -1,8 +1,9 @@
 import logo from './../img/logo.png'
 import cart from './../img/cart.svg'
 import user from './../img/user.svg'
+// import {useState} from 'react/'
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className="d-flex justify-between align-center">
       <div className="d-flex align-center">
@@ -16,7 +17,9 @@ const Header = () => {
       </div>
       <div>
         <ul className="d-flex">
-          <li className="mr-30">
+          <li 
+          onClick={() => props.onClickCart()} 
+          className="mr-30 cu-p">
             <img id="user__icon" src={cart} alt="Cart" />
             <span className="cart__price">120 £</span>
           </li>
