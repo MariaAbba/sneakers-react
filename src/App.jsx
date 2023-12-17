@@ -2,16 +2,11 @@ import Card from './helpers/Card/Card'
 import Header from './components/Header'
 import Drawer from './components/Drawer'
 import { useState, useEffect } from 'react'
-
-// import plus from './img/plus.svg'
-// import heartFilled from './img/heart-filled.svg'
-// import heart from './img/heart.svg'
 import search from './img/search.svg'
-// import arrowRight from './img/arrow-right.svg'
-// import removeBtn from './img/remove-btn.svg'
 
 function App() {
   const [items, setItems] = useState([])
+  const [searchValue, setSearchValue] = useState('')
   const [cartItems, setCartItems] = useState([])
   const [cartOpened, setCartOpened] = useState(false)
 
@@ -26,8 +21,16 @@ function App() {
   })
 
   const onAddtoCart = (product) => {
-   setCartItems(prev => [...prev, product])
+    setCartItems((prev) => [...prev, product])
   }
+
+  const onChangeSearchInput = (event) => {
+    setSearchValue(event.target.value)
+  }
+
+  // const deleteFromCart = (product) => {
+  //   setCartItems()
+  // }
 
   return (
     <div className="wrapper">
@@ -38,21 +41,28 @@ function App() {
       <Header onClickCart={() => setCartOpened(true)} />
       <div className="content ">
         <div className=" d-flex align-center mb-40 justify-between">
-          <h2 className="content__title">All trainers</h2>
+          <h2 className="content__title">
+            {searchValue ? `Search for "${searchValue}"` : 'All items'}
+          </h2>
           <div className="search__block d-flex">
             <img src={search} alt="Search" />
-            <input type="text" placeholder="Search" />
+            <input
+              onChange={onChangeSearchInput}
+              type="text"
+              placeholder="Search"
+            />
           </div>
         </div>
-        <div className="d-flex">
-          {items.map((item, index) => (
+        <div className=" card__content d-flex">
+          {items.map((item) => (
             <Card
-              key={index}
+              key={item.title}
               title={item.title}
               price={item.price}
               img={item.img}
               clickOnFavorite={() => console.log('Added ')}
               onPlus={(item) => onAddtoCart(item)}
+              // deleteItem={(item) => deleteFromCart(item)}
             />
           ))}
         </div>

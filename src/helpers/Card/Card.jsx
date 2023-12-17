@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import heart from './../../img/heart.svg'
 import plus from './../../img/plus.svg'
 import checked from './../../img/checked.svg'
@@ -8,7 +9,7 @@ const Card = ({ title, price, img, onPlus, clickOnFavorite }) => {
   const [isAdded, setIsAdded] = useState(false)
 
   const onClickPlus = () => {
-    onPlus({title, img, price});
+    onPlus({ title, img, price })
     setIsAdded(!isAdded)
   }
 
@@ -35,4 +36,11 @@ const Card = ({ title, price, img, onPlus, clickOnFavorite }) => {
   )
 }
 
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired, // Assuming price is a number, adjust accordingly
+  img: PropTypes.string.isRequired,
+  onPlus: PropTypes.func.isRequired,
+  clickOnFavorite: PropTypes.func.isRequired,
+}
 export default Card

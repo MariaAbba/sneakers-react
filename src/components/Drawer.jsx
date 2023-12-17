@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types'
 import arrowRight from './../img/arrow-right.svg'
 import removeBtn from './../img/remove-btn.svg'
-import trainers1 from './../img/trainers-1.jpg'
 
-function Drawer({ onClose, items = [] }) {
+function Drawer({ onClose, items = [], deleteItem }) {
   return (
     <div className="drawer__overlay">
       <div className="drawer">
@@ -18,17 +18,24 @@ function Drawer({ onClose, items = [] }) {
 
         <div className="items">
           {items.map((obj) => (
-            <div className="cartItem d-flex align-center mb-20">
+            <div
+              key={items.title}
+              className="cartItem d-flex align-center mb-20"
+            >
               <div
                 className="cartItemImg"
                 style={{ backgroundImage: `url(${obj.img})` }}
               ></div>
-
               <div className="mr-20">
                 <p className="mb-5">{obj.title}</p>
                 <b>{obj.price} £</b>
               </div>
-              <img className="remove-btn" src={removeBtn} alt="Remove icon" />
+              <img
+                onClick={() => deleteItem(index)}
+                className="remove-btn"
+                src={removeBtn}
+                alt="Remove icon"
+              />
             </div>
           ))}
         </div>
