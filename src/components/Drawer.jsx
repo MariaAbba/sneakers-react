@@ -2,46 +2,37 @@ import arrowRight from './../img/arrow-right.svg'
 import removeBtn from './../img/remove-btn.svg'
 import trainers1 from './../img/trainers-1.jpg'
 
-const Drawer = (props) => {
+function Drawer({ onClose, items = [] }) {
   return (
-    <div
-      className="drawer__overlay"
-    >
+    <div className="drawer__overlay">
       <div className="drawer">
         <h2 className="drawer__title">
           Shopping Bag
           <img
-            onClick={() => props.onClose()}
+            onClick={() => onClose()}
             className="remove-btn cu-p"
             src={removeBtn}
             alt="Close"
           />
         </h2>
-        <div className="items">
-          <div className="cartItem d-flex align-center mb-20">
-            <div
-              className="cartItemImg"
-              style={{ backgroundImage: `url(${trainers1})` }}
-            ></div>
-            <div className="mr-20">
-              <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
-              <b>120 £</b>
-            </div>
-            <img className="remove-btn" src={removeBtn} alt="Remove icon" />
-          </div>
-          <div className="cartItem d-flex align-center mb-20">
-            <div
-              className="cartItemImg"
-              style={{ backgroundImage: `url(${trainers1})` }}
-            ></div>
 
-            <div className="mr-20">
-              <p className="mb-5">Мужские Кроссовки Nike Air Max 270</p>
-              <b>120 £</b>
+        <div className="items">
+          {items.map((obj) => (
+            <div className="cartItem d-flex align-center mb-20">
+              <div
+                className="cartItemImg"
+                style={{ backgroundImage: `url(${obj.img})` }}
+              ></div>
+
+              <div className="mr-20">
+                <p className="mb-5">{obj.title}</p>
+                <b>{obj.price} £</b>
+              </div>
+              <img className="remove-btn" src={removeBtn} alt="Remove icon" />
             </div>
-            <img className="remove-btn" src={removeBtn} alt="Remove icon" />
-          </div>
+          ))}
         </div>
+
         <div className="shoppingTotal">
           <ul>
             <li className="d-flex">

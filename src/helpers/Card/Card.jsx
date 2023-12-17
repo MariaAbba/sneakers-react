@@ -4,10 +4,11 @@ import plus from './../../img/plus.svg'
 import checked from './../../img/checked.svg'
 import './card.scss'
 
-const Card = ({ title, price, img, clickOnPlus, clickOnFavorite }) => {
+const Card = ({ title, price, img, onPlus, clickOnFavorite }) => {
   const [isAdded, setIsAdded] = useState(false)
 
   const onClickPlus = () => {
+    onPlus({title, img, price});
     setIsAdded(!isAdded)
   }
 
