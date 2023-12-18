@@ -2,7 +2,9 @@ import Card from './helpers/Card/Card'
 import Header from './components/Header'
 import Drawer from './components/Drawer'
 import { useState, useEffect } from 'react'
+
 import search from './img/search.svg'
+import remove from './img/remove.svg'
 
 function App() {
   const [items, setItems] = useState([])
@@ -28,6 +30,9 @@ function App() {
     setSearchValue(event.target.value)
   }
 
+  const clearInput = ()=> {
+    setSearchValue('')
+  }
   // const deleteFromCart = (product) => {
   //   setCartItems()
   // }
@@ -45,16 +50,25 @@ function App() {
             {searchValue ? `Search for "${searchValue}"` : 'All items'}
           </h2>
           <div className="search__block d-flex">
-            <img src={search} alt="Search" />
+            <img src={search} className="searchIcon" alt="Search" />
+            {searchValue && (
+              <img
+              onClick={clearInput}
+              src={remove} className="clearIcon" alt="Clear" />
+            )}
             <input
+              className="searchInput"
               onChange={onChangeSearchInput}
+              value={searchValue}
               type="text"
-              placeholder="Search"
+              placeholder="Search for an item, color..."
             />
           </div>
         </div>
         <div className=" card__content d-flex">
-          {items.map((item) => (
+          {items
+          .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+          .map((item) => (
             <Card
               key={item.title}
               title={item.title}
