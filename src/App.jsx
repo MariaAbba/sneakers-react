@@ -1,7 +1,9 @@
 import Card from './helpers/Card/Card'
 import Header from './components/Header'
 import Drawer from './components/Drawer'
+
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import search from './img/search.svg'
 import remove from './img/remove.svg'
@@ -13,14 +15,12 @@ function App() {
   const [cartOpened, setCartOpened] = useState(false)
 
   useEffect(() => {
-    fetch('https://657b154d394ca9e4af13a351.mockapi.io/items')
+    axios
+      .get('https://657b154d394ca9e4af13a351.mockapi.io/items')
       .then((res) => {
-        return res.json()
+        setItems(res.data)
       })
-      .then((json) => {
-        setItems(json)
-      })
-  })
+  }, [])
 
   const onAddtoCart = (product) => {
     setCartItems((prev) => [...prev, product])
@@ -30,7 +30,7 @@ function App() {
     setSearchValue(event.target.value)
   }
 
-  const clearInput = ()=> {
+  const clearInput = () => {
     setSearchValue('')
   }
   // const deleteFromCart = (product) => {
@@ -53,8 +53,11 @@ function App() {
             <img src={search} className="searchIcon" alt="Search" />
             {searchValue && (
               <img
-              onClick={clearInput}
-              src={remove} className="clearIcon" alt="Clear" />
+                onClick={clearInput}
+                src={remove}
+                className="clearIcon"
+                alt="Clear"
+              />
             )}
             <input
               className="searchInput"
@@ -67,18 +70,20 @@ function App() {
         </div>
         <div className=" card__content d-flex">
           {items
-          .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
-          .map((item) => (
-            <Card
-              key={item.title}
-              title={item.title}
-              price={item.price}
-              img={item.img}
-              clickOnFavorite={() => console.log('Added ')}
-              onPlus={(item) => onAddtoCart(item)}
-              // deleteItem={(item) => deleteFromCart(item)}
-            />
-          ))}
+            .filter((item) =>
+              item.title.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            .map((item) => (
+              <Card
+                key={item.title}
+                title={item.title}
+                price={item.price}
+                img={item.img}
+                clickOnFavorite={() => console.log('Added ')}
+                onPlus={(item) => onAddtoCart(item)}
+                // deleteItem={(item) => deleteFromCart(item)}
+              />
+            ))}
         </div>
       </div>
     </div>
