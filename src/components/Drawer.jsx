@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import arrowRight from './../img/arrow-right.svg'
 import removeBtn from './../img/remove-btn.svg'
 
-function Drawer({ onClose, items = [], deleteItem }) {
+function Drawer({ onClose, items = [], deleteItem, onRemove }) {
   return (
     <div className="drawer__overlay">
       <div className="drawer">
@@ -31,7 +31,7 @@ function Drawer({ onClose, items = [], deleteItem }) {
                 <b>{obj.price} £</b>
               </div>
               <img
-                onClick={() => deleteItem(index)}
+                onClick={() => onRemove(obj.id)}
                 className="remove-btn"
                 src={removeBtn}
                 alt="Remove icon"
