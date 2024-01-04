@@ -37,11 +37,11 @@ const Card = ({ title, price, img, onPlus, clickOnFavorite }) => {
   )
 }
 
-// Card.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   price: PropTypes.number.isRequired, // Assuming price is a number, adjust accordingly
-//   img: PropTypes.string.isRequired,
-//   onPlus: PropTypes.func.isRequired,
-//   clickOnFavorite: PropTypes.func.isRequired,
-// }
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired, // Assuming price is a number, adjust accordingly
+  img: PropTypes.string.isRequired,
+  onPlus: PropTypes.func.isRequired,
+  clickOnFavorite: PropTypes.func.isRequired,
+}
 export default Card

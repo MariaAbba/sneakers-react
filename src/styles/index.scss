@@ -48,6 +48,7 @@ header {
   }
 }
 
+
 .content {
   padding: 40px;
 
@@ -67,6 +68,35 @@ header {
   height: 150px;
   width: 100%;
 }
+
+.cartEmpty {
+  text-align: center;
+
+  p {
+    width: 280px;
+    line-height: 24px;
+  }
+
+  .greenButton {
+    width: 245px;
+    margin-top: 20px;
+
+    &:hover {
+      img {
+        transform: rotate(180deg) translateX(3px);
+      }
+    }
+
+    img {
+      position: relative;
+      top: 1px;
+      transform: rotate(180deg);
+      margin-right: 15px;
+      transition: transform 0.15s ease-in-out;
+    }
+  }
+}
+
 
 // ? ====================== Search block
 
