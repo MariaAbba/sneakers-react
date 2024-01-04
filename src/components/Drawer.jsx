@@ -4,7 +4,7 @@ import removeBtn from './../img/remove-btn.svg'
 import emptyCart from './../img/empty-cart.jpg'
 import arrowLeft from './../img/arrow.svg'
 
-function Drawer({ onClose, items = [], deleteItem, onRemove }) {
+function Drawer({ onClose, items = [], onRemove }) {
   return (
     <div className="drawer__overlay">
       <div className="drawer">
@@ -19,7 +19,7 @@ function Drawer({ onClose, items = [], deleteItem, onRemove }) {
         </h2>
 
         {items.length > 0 ? (
-          <div>
+          <>
             <div className="items">
               {items.map((obj) => (
                 <div
@@ -62,7 +62,7 @@ function Drawer({ onClose, items = [], deleteItem, onRemove }) {
                 <img src={arrowRight} alt="Arrow" />
               </button>
             </div>
-          </div>
+          </>
         ) : (
           <div className="cartEmpty d-flex align-center justify-center flex-column mb-20">
             <img
@@ -87,4 +87,9 @@ function Drawer({ onClose, items = [], deleteItem, onRemove }) {
   )
 }
 
+Drawer.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
+  onRemove: PropTypes.func.isRequired,
+}
 export default Drawer

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import heart from './../../img/heart.svg'
+import redHeart from './../../img/liked.svg'
 import plus from './../../img/plus.svg'
 import checked from './../../img/checked.svg'
 import './card.scss'
@@ -8,16 +9,24 @@ import './card.scss'
 const Card = ({ title, price, img, onPlus, clickOnFavorite }) => {
   
   const [isAdded, setIsAdded] = useState(false)
+  const [isFavourite, setIsFavourite] = useState(false)
 
   const onClickPlus = () => {
     onPlus({ title, img, price })
     setIsAdded(!isAdded)
   }
 
+  const onClickFavourite = () => {
+    clickOnFavorite({ title, img, price })
+    setIsFavourite(!isFavourite)
+  }
+
   return (
     <div className="card">
       <div className="favourite" onClick={clickOnFavorite}>
-        <img src={heart} alt="icon" />
+        <img 
+        onClick={onClickFavourite}
+        src={isFavourite ? redHeart : heart} alt="icon" />
       </div>
       <img className="trainers__photo" src={img} alt="Trainers-photo" />
       <h5 className="card__title">{title}</h5>
