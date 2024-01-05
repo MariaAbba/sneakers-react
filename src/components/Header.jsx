@@ -8,17 +8,17 @@ import PropTypes from 'prop-types'
 const Header = (props) => {
   return (
     <header className="d-flex justify-between align-center">
-      <div className="d-flex align-center">
-        <Link to="/">
+      <Link to="/">
+        <div className="d-flex align-center">
           <img id="logo" src={logo} alt="Logo" />
-        </Link>
-        <div className="headerInfo">
-          <h1 className="title__header">React Trainers</h1>
-          <p className="subtitle__header opacity-5">
-            Shop for the best trainers
-          </p>
+          <div className="headerInfo">
+            <h1 className="title__header">React Trainers</h1>
+            <p className="subtitle__header opacity-5">
+              Shop for the best trainers
+            </p>
+          </div>
         </div>
-      </div>
+      </Link>
       <div>
         <ul className="d-flex">
           <li onClick={() => props.onClickCart()} className="mr-20 cu-p">
@@ -26,7 +26,7 @@ const Header = (props) => {
             <span className="cart__price">120 £</span>
           </li>
           <li className="mr-20 cu-p">
-            <Link to="favourites">
+            <Link to="/favourites">
               <img src={heart} alt="Bookmarks" width={18} height={18} />
             </Link>
           </li>
