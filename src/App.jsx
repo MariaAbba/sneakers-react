@@ -1,12 +1,12 @@
-import Card from './helpers/Card/Card'
+// import Card from './helpers/Card/Card'
 import Header from './components/Header'
 import Drawer from './components/Drawer'
+import Home from './components/pages/Home'
+import Favourites from './components/pages/Favourites'
 
 import { useState, useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
-
-import search from './img/search.svg'
-import remove from './img/remove.svg'
 
 function App() {
   const [items, setItems] = useState([])
@@ -50,9 +50,9 @@ function App() {
     setSearchValue(event.target.value)
   }
 
-  const clearInput = () => {
-    setSearchValue('')
-  }
+  // const clearInput = () => {
+  //   setSearchValue('')
+  // }
 
   return (
     <div className="wrapper">
@@ -65,48 +65,25 @@ function App() {
       )}
       {/* {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null} */}
       <Header onClickCart={() => setCartOpened(true)} />
-      <div className="content ">
-        <div className=" d-flex align-center mb-40 justify-between">
-          <h2 className="content__title">
-            {searchValue ? `Search for "${searchValue}"` : 'All items'}
-          </h2>
-          <div className="search__block d-flex">
-            <img src={search} className="searchIcon" alt="Search" />
-            {searchValue && (
-              <img
-                onClick={clearInput}
-                src={remove}
-                className="clearIcon"
-                alt="Clear"
-              />
-            )}
-            <input
-              className="searchInput"
-              onChange={onChangeSearchInput}
-              value={searchValue}
-              type="text"
-              placeholder="Search for an item, color..."
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              items={items}
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+              onChangeSearchInput={onChangeSearchInput}
+              onAddToFavourite={onAddToFavourite}
+              onAddtoCart={onAddtoCart}
             />
-          </div>
-        </div>
-        <div className=" card__content d-flex">
-          {items
-            .filter((item) =>
-              item.title.toLowerCase().includes(searchValue.toLowerCase())
-            )
-            .map((item) => (
-              <Card
-                key={item.title}
-                title={item.title}
-                price={item.price}
-                img={item.img}
-                clickOnFavorite={() => onAddToFavourite(item)}
-                onPlus={(item) => onAddtoCart(item)}
-                // deleteItem={(item) => deleteFromCart(item)}
-              />
-            ))}
-        </div>
-      </div>
+          }
+        />
+      </Routes>
+
+      <Routes>
+        <Route path="/favourites" element={<Favourites />} />
+      </Routes>
     </div>
   )
 }
