@@ -6,10 +6,10 @@ import plus from './../../img/plus.svg'
 import checked from './../../img/checked.svg'
 import './card.scss'
 
-const Card = ({ title, price, img, onPlus, clickOnFavorite }) => {
+const Card = ({ title, price, img, onPlus, clickOnFavorite, bookmarked = false }) => {
   
   const [isAdded, setIsAdded] = useState(false)
-  const [isFavourite, setIsFavourite] = useState(false)
+  const [isFavourite, setIsFavourite] = useState(bookmarked)
 
   const onClickPlus = () => {
     onPlus({ title, img, price })
@@ -17,7 +17,7 @@ const Card = ({ title, price, img, onPlus, clickOnFavorite }) => {
   }
 
   const onClickFavourite = () => {
-    clickOnFavorite({ title, img, price })
+    // clickOnFavorite({ title, img, price })
     setIsFavourite(!isFavourite)
   }
 
@@ -46,11 +46,11 @@ const Card = ({ title, price, img, onPlus, clickOnFavorite }) => {
   )
 }
 
-Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired, // Assuming price is a number, adjust accordingly
-  img: PropTypes.string.isRequired,
-  onPlus: PropTypes.func.isRequired,
-  clickOnFavorite: PropTypes.func.isRequired,
-}
+// Card.propTypes = {
+//   title: PropTypes.string.isRequired,
+//   price: PropTypes.number.isRequired, // Assuming price is a number, adjust accordingly
+//   img: PropTypes.string.isRequired,
+//   // onPlus: PropTypes.func.isRequired,
+//   clickOnFavorite: PropTypes.func.isRequired,
+// }
 export default Card

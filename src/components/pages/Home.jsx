@@ -49,7 +49,6 @@ function Home({
               img={item.img}
               clickOnFavorite={() => onAddToFavourite(item)}
               onPlus={(item) => onAddtoCart(item)}
-              // deleteItem={(item) => deleteFromCart(item)}
             />
           ))}
       </div>
