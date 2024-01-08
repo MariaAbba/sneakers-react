@@ -20,12 +20,12 @@ function App() {
       .get('https://657b154d394ca9e4af13a351.mockapi.io/items')
       .then((res) => {
         setItems(res.data)
-      });
+      })
     axios
       .get('https://657b154d394ca9e4af13a351.mockapi.io/cart')
       .then((res) => {
         setCartItems(res.data)
-      });
+      })
     axios
       .get('https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites')
       .then((res) => {
@@ -44,15 +44,18 @@ function App() {
   }
 
   const onAddToFavourite = (product) => {
-    if (favourites.find(product => product.id === id)) {
-         axios.delete(`https://657b154d394ca9e4af13a351.mockapi.io/favourites/${product.id}`) 
-             setFavourites((prev) => [...prev.filter((item) => item.id !== product.id)])
+    if (favourites.find((product) => product.id === id)) {
+      axios.delete(
+        `https://657b154d394ca9e4af13a351.mockapi.io/favourites/${product.id}`
+      )
+      setFavourites((prev) => prev.filter((item) => item.id !== product.id))
+    } else {
+      axios.post(
+        'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites',
+        product
+      )
+      setFavourites((prev) => [...prev, product])
     }
-    axios.post(
-      'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites',
-      product
-    )
-    setFavourites((prev) => [...prev, product])
   }
 
   const onChangeSearchInput = (event) => {
