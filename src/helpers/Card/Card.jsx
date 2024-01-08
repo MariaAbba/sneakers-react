@@ -6,7 +6,7 @@ import plus from './../../img/plus.svg'
 import checked from './../../img/checked.svg'
 import './card.scss'
 
-const Card = ({ title, price, img, onPlus, clickOnFavorite, bookmarked = false }) => {
+const Card = ({id, title, price, img, onPlus, clickOnFavorite, bookmarked = false }) => {
   
   const [isAdded, setIsAdded] = useState(false)
   const [isFavourite, setIsFavourite] = useState(bookmarked)

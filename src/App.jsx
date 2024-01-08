@@ -44,7 +44,7 @@ function App() {
   }
 
   const onAddToFavourite = (product) => {
-    if (favourites.find((product) => product.id === id)) {
+    if (favourites.find((favObj) => favObj.id === product.id)) {
       axios.delete(
         `https://657b154d394ca9e4af13a351.mockapi.io/favourites/${product.id}`
       )

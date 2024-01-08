@@ -44,11 +44,12 @@ function Home({
           .map((item) => (
             <Card
               key={item.title}
-              title={item.title}
-              price={item.price}
-              img={item.img}
+              // title={item.title}
+              // price={item.price}
+              // img={item.img}
               clickOnFavorite={() => onAddToFavourite(item)}
               onPlus={(item) => onAddtoCart(item)}
+              {...item}
             />
           ))}
       </div>

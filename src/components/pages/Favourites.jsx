@@ -15,6 +15,7 @@ function Favourites({ items, onAddToFavourite }) {
             img={item.img}
             bookmarked={true}
             onFavourite={onAddToFavourite}
+            {...item}
           />
         ))}
       </div>
