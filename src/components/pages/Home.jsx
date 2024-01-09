@@ -12,7 +12,7 @@ function Home({
   onAddtoCart ,
   clearInput
 }) {
- console.log('onAddToFavourite:', onAddToFavourite)
+
   return (
     <div className="content ">
       <div className=" d-flex align-center mb-40 justify-between">
@@ -49,8 +49,8 @@ function Home({
               // title={item.title}
               // price={item.price}
               // img={item.img}
-              clickOnFavourite={(obj) => onAddToFavourite(obj)}
-              onPlus={(obj) => onAddtoCart(obj)}
+              onFavourite={(obj) => onAddToFavourite(obj)}
+              onPlus={(item) => onAddtoCart(item)}
               {...item}
             />
           ))}

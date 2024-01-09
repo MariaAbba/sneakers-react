@@ -11,10 +11,10 @@ const Card = ({
   price,
   img,
   onPlus,
-  clickOnFavourite,
+  onFavourite,
   bookmarked = false,
 }) => {
-  console.log('clickOnFavourite:', clickOnFavourite)
+
 
   const [isAdded, setIsAdded] = useState(false)
   const [isFavourite, setIsFavourite] = useState(bookmarked)
@@ -25,7 +25,7 @@ const Card = ({
   }
 
   const onClickFavourite = () => {
-    clickOnFavourite({ id, title, img, price })
+    onFavourite({ id, title, img, price })
     setIsFavourite(!isFavourite)
   }
 

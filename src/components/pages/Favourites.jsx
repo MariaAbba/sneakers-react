@@ -7,8 +7,7 @@ function Favourites({items, onAddToFavourite }) {
         <h2 className="content__title">Favourites</h2>
       </div>
       <div className=" card__content d-flex">
-        {items
-        .map((item) => (
+        {items.map((item) => (
           <Card
             key={item.title}
             title={item.title}
