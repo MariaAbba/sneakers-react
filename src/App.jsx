@@ -43,18 +43,18 @@ function App() {
     setCartItems((prev) => [...prev.filter((item) => item.id !== id)])
   }
 
-  const onAddToFavourite = (product) => {
-    if (favourites.find((favObj) => favObj.id === product.id)) {
+  const onAddToFavourite = (obj) => {
+    if (favourites.find((favObj) => favObj.id === obj.id)) {
       axios.delete(
-        `https://657b154d394ca9e4af13a351.mockapi.io/favourites/${product.id}`
+        `https://657b154d394ca9e4af13a351.mockapi.io/favourites/${obj.id}`
       )
-      setFavourites((prev) => prev.filter((item) => item.id !== product.id))
+      setFavourites((prev) => prev.filter((item) => item.id !== obj.id))
     } else {
       axios.post(
         'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites',
-        product
+        obj
       )
-      setFavourites((prev) => [...prev, product])
+      setFavourites((prev) => [...prev, obj])
     }
   }
 
@@ -83,11 +83,13 @@ function App() {
           element={
             <Home
               items={items}
+              cartItems={cartItems}
               searchValue={searchValue}
               setSearchValue={setSearchValue}
               onChangeSearchInput={onChangeSearchInput}
-              // onAddToFavourite={onAddToFavourite}
+              onAddToFavourite={onAddToFavourite}
               onAddtoCart={onAddtoCart}
+              clearInput={clearInput}
             />
           }
         />

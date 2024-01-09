@@ -9,8 +9,10 @@ function Home({
   setSearchValue,
   onChangeSearchInput,
   onAddToFavourite,
-  onAddtoCart
+  onAddtoCart ,
+  clearInput
 }) {
+ console.log('onAddToFavourite:', onAddToFavourite)
   return (
     <div className="content ">
       <div className=" d-flex align-center mb-40 justify-between">
@@ -21,7 +23,7 @@ function Home({
           <img src={search} className="searchIcon" alt="Search" />
           {searchValue && (
             <img
-              // onClick={clearInput}
+              onClick={clearInput}
               src={remove}
               className="clearIcon"
               alt="Clear"
@@ -47,8 +49,8 @@ function Home({
               // title={item.title}
               // price={item.price}
               // img={item.img}
-              clickOnFavorite={() => onAddToFavourite(item)}
-              onPlus={(item) => onAddtoCart(item)}
+              clickOnFavourite={(obj) => onAddToFavourite(obj)}
+              onPlus={(obj) => onAddtoCart(obj)}
               {...item}
             />
           ))}

@@ -1,13 +1,21 @@
 import { useState } from 'react'
-import PropTypes from 'prop-types'
 import heart from './../../img/heart.svg'
 import redHeart from './../../img/liked.svg'
 import plus from './../../img/plus.svg'
 import checked from './../../img/checked.svg'
 import './card.scss'
 
-const Card = ({id, title, price, img, onPlus, clickOnFavorite, bookmarked = false }) => {
-  
+const Card = ({
+  id,
+  title,
+  price,
+  img,
+  onPlus,
+  clickOnFavourite,
+  bookmarked = false,
+}) => {
+  console.log('clickOnFavourite:', clickOnFavourite)
+
   const [isAdded, setIsAdded] = useState(false)
   const [isFavourite, setIsFavourite] = useState(bookmarked)
 
@@ -17,16 +25,18 @@ const Card = ({id, title, price, img, onPlus, clickOnFavorite, bookmarked = fals
   }
 
   const onClickFavourite = () => {
-    // clickOnFavorite({ title, img, price })
+    clickOnFavourite({ id, title, img, price })
     setIsFavourite(!isFavourite)
   }
 
   return (
     <div className="card">
-      <div className="favourite" onClick={clickOnFavorite}>
-        <img 
-        onClick={onClickFavourite}
-        src={isFavourite ? redHeart : heart} alt="icon" />
+      <div className="favourite" onClick={onClickFavourite}>
+        <img
+          onClick={onClickFavourite}
+          src={isFavourite ? redHeart : heart}
+          alt="icon"
+        />
       </div>
       <img className="trainers__photo" src={img} alt="Trainers-photo" />
       <h5 className="card__title">{title}</h5>
@@ -46,11 +56,4 @@ const Card = ({id, title, price, img, onPlus, clickOnFavorite, bookmarked = fals
   )
 }
 
-// Card.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   price: PropTypes.number.isRequired, // Assuming price is a number, adjust accordingly
-//   img: PropTypes.string.isRequired,
-//   // onPlus: PropTypes.func.isRequired,
-//   clickOnFavorite: PropTypes.func.isRequired,
-// }
 export default Card
