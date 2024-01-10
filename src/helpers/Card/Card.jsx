@@ -20,7 +20,7 @@ const Card = ({
   const [isFavourite, setIsFavourite] = useState(bookmarked)
 
   const onClickPlus = () => {
-    onPlus({ title, img, price })
+    onPlus({ id, title, img, price })
     setIsAdded(!isAdded)
   }
 

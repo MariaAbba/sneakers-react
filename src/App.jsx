@@ -34,8 +34,8 @@ function App() {
   }, [])
 
   const onAddtoCart = (product) => {
-    if (cartItems.find((item) => item.id === product.id)) {
-      setCartItems((prev) => prev.filter((item) => item.id !== product.id))
+    if (cartItems.find((item) => Number(item.id) === Number(product.id))) {
+      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(product.id)))
     } else {
       axios.post('https://657b154d394ca9e4af13a351.mockapi.io/cart', product)
       setCartItems((prev) => [...prev, product])
