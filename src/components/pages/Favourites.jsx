@@ -9,7 +9,7 @@ function Favourites({items, onAddToFavourite }) {
       <div className=" card__content d-flex">
         {items.map((item) => (
           <Card
-            key={item.title}
+            key={item.id}
             title={item.title}
             price={item.price}
             img={item.img}

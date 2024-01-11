@@ -15,27 +15,51 @@ function App() {
   const [favourites, setFavourites] = useState([])
   const [cartOpened, setCartOpened] = useState(false)
 
+  // useEffect(async () => {
+  //   async function fetchData() {
+  //     const cartResponse = await axios.get(
+  //       'https://657b154d394ca9e4af13a351.mockapi.io/cart'
+  //     )
+  //     const favouritesResponse = await axios.get(
+  //       'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites'
+  //     )
+  //     const itemsResponse = await axios.get(
+  //       'https://657b154d394ca9e4af13a351.mockapi.io/items'
+  //     )
+
+  //     setItems(itemsResponse.data)
+  //     setCartItems(cartResponse.data)
+  //     setFavourites(favouritesResponse.data)
+  //   }
+  // }, [])
+
   useEffect(() => {
-    axios
-      .get('https://657b154d394ca9e4af13a351.mockapi.io/items')
-      .then((res) => {
-        setItems(res.data)
-      })
-    axios
-      .get('https://657b154d394ca9e4af13a351.mockapi.io/cart')
-      .then((res) => {
-        setCartItems(res.data)
-      })
-    axios
-      .get('https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites')
-      .then((res) => {
-        setFavourites(res.data)
-      })
+    async function fetchData() {
+      const cartResponse = await axios.get(
+        'https://657b154d394ca9e4af13a351.mockapi.io/cart'
+      )
+      const favouritesResponse = await axios.get(
+        'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites'
+      )
+      const itemsResponse = await axios.get(
+        'https://657b154d394ca9e4af13a351.mockapi.io/items'
+      )
+
+      setCartItems(cartResponse.data)
+      setFavourites(favouritesResponse.data)
+      setItems(itemsResponse.data)
+    }
+    fetchData() 
   }, [])
 
   const onAddtoCart = (product) => {
+    axios.delete(
+      `https://657b154d394ca9e4af13a351.mockapi.io/cart/${product.id}`
+    )
     if (cartItems.find((item) => Number(item.id) === Number(product.id))) {
-      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(product.id)))
+      setCartItems((prev) =>
+        prev.filter((item) => Number(item.id) !== Number(product.id))
+      )
     } else {
       axios.post('https://657b154d394ca9e4af13a351.mockapi.io/cart', product)
       setCartItems((prev) => [...prev, product])

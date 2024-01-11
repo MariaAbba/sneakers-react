@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import ContentLoader from 'react-content-loader'
+
 import heart from './../../img/heart.svg'
 import redHeart from './../../img/liked.svg'
 import plus from './../../img/plus.svg'
@@ -13,10 +15,10 @@ const Card = ({
   onPlus,
   onFavourite,
   bookmarked = false,
+  added = false,
+  loading = false
 }) => {
-
-
-  const [isAdded, setIsAdded] = useState(false)
+  const [isAdded, setIsAdded] = useState((added) )
   const [isFavourite, setIsFavourite] = useState(bookmarked)
 
   const onClickPlus = () => {
@@ -30,7 +32,25 @@ const Card = ({
   }
 
   return (
-    <div className="card">
+    <div className="card">   
+  { loading ?
+      <ContentLoader
+        speed={2}
+        width={155}
+        height={250}
+        viewBox="0 0 150 265"
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="143" y="21" rx="0" ry="0" width="1" height="0" />
+        <rect x="0" y="0" rx="10" ry="10" width="150" height="150" />
+        <rect x="0" y="167" rx="5" ry="5" width="150" height="15" />
+        <rect x="0" y="194" rx="5" ry="5" width="100" height="15" />
+        <rect x="2" y="25" rx="5" ry="5" width="80" height="27" />
+        <rect x="109" y="230" rx="10" ry="10" width="32" height="32" />
+        <rect x="3" y="234" rx="5" ry="5" width="80" height="24" />
+      </ContentLoader> : 
+      <>
       <div className="favourite" onClick={onClickFavourite}>
         <img
           onClick={onClickFavourite}
@@ -52,6 +72,7 @@ const Card = ({
           onClick={() => onClickPlus()}
         />
       </div>
+      </>}
     </div>
   )
 }

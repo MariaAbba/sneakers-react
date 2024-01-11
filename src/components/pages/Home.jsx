@@ -5,14 +5,14 @@ import remove from '../../img/remove.svg'
 
 function Home({
   items,
+  cartItems,
   searchValue,
   setSearchValue,
   onChangeSearchInput,
   onAddToFavourite,
-  onAddtoCart ,
-  clearInput
+  onAddtoCart,
+  clearInput,
 }) {
-
   return (
     <div className="content ">
       <div className=" d-flex align-center mb-40 justify-between">
@@ -50,7 +50,9 @@ function Home({
               // price={item.price}
               // img={item.img}
               onFavourite={(obj) => onAddToFavourite(obj)}
-              onPlus={(item) => onAddtoCart(item)}
+              onPlus={(obj) => onAddtoCart(obj)}
+              added = {cartItems.some((obj) => Number(obj.id) === Number(item.id))}
+              loading = {true}
               {...item}
             />
           ))}
