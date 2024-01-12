@@ -36,6 +36,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true)
       const cartResponse = await axios.get(
         'https://657b154d394ca9e4af13a351.mockapi.io/cart'
       )
@@ -45,12 +46,13 @@ function App() {
       const itemsResponse = await axios.get(
         'https://657b154d394ca9e4af13a351.mockapi.io/items'
       )
-
+      setIsLoading(false)
+      
       setCartItems(cartResponse.data)
       setFavourites(favouritesResponse.data)
       setItems(itemsResponse.data)
     }
-    fetchData() 
+    fetchData()
   }, [])
 
   const onAddtoCart = (product) => {
@@ -122,6 +124,7 @@ function App() {
               onChangeSearchInput={onChangeSearchInput}
               onAddToFavourite={onAddToFavourite}
               onAddtoCart={onAddtoCart}
+              isLoading={isLoading}
               clearInput={clearInput}
             />
           }

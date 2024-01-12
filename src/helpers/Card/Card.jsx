@@ -16,9 +16,9 @@ const Card = ({
   onFavourite,
   bookmarked = false,
   added = false,
-  loading = false
+  loading = false,
 }) => {
-  const [isAdded, setIsAdded] = useState((added) )
+  const [isAdded, setIsAdded] = useState(added)
   const [isFavourite, setIsFavourite] = useState(bookmarked)
 
   const onClickPlus = () => {

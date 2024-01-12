@@ -12,26 +12,25 @@ function Home({
   onAddToFavourite,
   onAddtoCart,
   clearInput,
+  isLoading,
 }) {
-
-  const renderItems =  () => {
- return items
-   .filter((item) =>
-     item.title.toLowerCase().includes(searchValue.toLowerCase())
-   )
-   .map((item) => (
-     <Card
-       key={item.title}
-       // title={item.title}
-       // price={item.price}
-       // img={item.img}
-       onFavourite={(obj) => onAddToFavourite(obj)}
-       onPlus={(obj) => onAddtoCart(obj)}
-       added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
-       loading={false}
-       {...item}
-     />
-   ))
+  const renderItems = () => {
+    const filteredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase()),
+    );
+    return (isLoading ? [...Array(8)] : filteredItems).map((item, index) => (
+      <Card
+        key={index}
+        // title={item.title}
+        // price={item.price}
+        // img={item.img}
+        onFavourite={(obj) => onAddToFavourite(obj)}
+        onPlus={(obj) => onAddtoCart(obj)}
+        added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
+        loading={isLoading}
+        {...item}
+      />
+    ))
   }
   return (
     <div className="content ">
@@ -58,9 +57,7 @@ function Home({
           />
         </div>
       </div>
-      <div className=" card__content d-flex">
-      {  renderItems()}
-      </div>
+      <div className=" card__content d-flex">{renderItems()}</div>
     </div>
   )
 }
