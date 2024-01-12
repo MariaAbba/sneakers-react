@@ -13,6 +13,26 @@ function Home({
   onAddtoCart,
   clearInput,
 }) {
+
+  const renderItems =  () => {
+ return items
+   .filter((item) =>
+     item.title.toLowerCase().includes(searchValue.toLowerCase())
+   )
+   .map((item) => (
+     <Card
+       key={item.title}
+       // title={item.title}
+       // price={item.price}
+       // img={item.img}
+       onFavourite={(obj) => onAddToFavourite(obj)}
+       onPlus={(obj) => onAddtoCart(obj)}
+       added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
+       loading={false}
+       {...item}
+     />
+   ))
+  }
   return (
     <div className="content ">
       <div className=" d-flex align-center mb-40 justify-between">
@@ -39,23 +59,7 @@ function Home({
         </div>
       </div>
       <div className=" card__content d-flex">
-        {items
-          .filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((item) => (
-            <Card
-              key={item.title}
-              // title={item.title}
-              // price={item.price}
-              // img={item.img}
-              onFavourite={(obj) => onAddToFavourite(obj)}
-              onPlus={(obj) => onAddtoCart(obj)}
-              added = {cartItems.some((obj) => Number(obj.id) === Number(item.id))}
-              loading = {true}
-              {...item}
-            />
-          ))}
+      {  renderItems()}
       </div>
     </div>
   )
