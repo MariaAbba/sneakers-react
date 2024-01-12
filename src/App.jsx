@@ -14,6 +14,7 @@ function App() {
   const [cartItems, setCartItems] = useState([])
   const [favourites, setFavourites] = useState([])
   const [cartOpened, setCartOpened] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   // useEffect(async () => {
   //   async function fetchData() {
