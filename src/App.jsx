@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 
+ const AppContext = {};
+
 function App() {
   const [items, setItems] = useState([])
   const [searchValue, setSearchValue] = useState('')
@@ -15,24 +17,6 @@ function App() {
   const [favourites, setFavourites] = useState([])
   const [cartOpened, setCartOpened] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-
-  // useEffect(async () => {
-  //   async function fetchData() {
-  //     const cartResponse = await axios.get(
-  //       'https://657b154d394ca9e4af13a351.mockapi.io/cart'
-  //     )
-  //     const favouritesResponse = await axios.get(
-  //       'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites'
-  //     )
-  //     const itemsResponse = await axios.get(
-  //       'https://657b154d394ca9e4af13a351.mockapi.io/items'
-  //     )
-
-  //     setItems(itemsResponse.data)
-  //     setCartItems(cartResponse.data)
-  //     setFavourites(favouritesResponse.data)
-  //   }
-  // }, [])
 
   useEffect(() => {
     async function fetchData() {
@@ -47,7 +31,7 @@ function App() {
         'https://657b154d394ca9e4af13a351.mockapi.io/items'
       )
       setIsLoading(false)
-      
+
       setCartItems(cartResponse.data)
       setFavourites(favouritesResponse.data)
       setItems(itemsResponse.data)
