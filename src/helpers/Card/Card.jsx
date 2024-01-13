@@ -8,15 +8,15 @@ import checked from './../../img/checked.svg'
 import './card.scss'
 
 const Card = ({
-  id,
-  title,
-  price,
-  img,
-  onPlus,
-  onFavourite,
-  bookmarked = false,
-  added = false,
-  loading = false,
+  // id,
+  // title,
+  // price,
+  // img,
+  // onPlus,
+  // onFavourite,
+  // bookmarked = false,
+  // added = false,
+  // loading = false,
 }) => {
   const [isAdded, setIsAdded] = useState(added)
   const [isFavourite, setIsFavourite] = useState(bookmarked)

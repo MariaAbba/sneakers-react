@@ -102,15 +102,15 @@ function App() {
             path="/"
             element={
               <Home
-                items={items}
-                cartItems={cartItems}
-                searchValue={searchValue}
-                setSearchValue={setSearchValue}
-                onChangeSearchInput={onChangeSearchInput}
-                onAddToFavourite={onAddToFavourite}
-                onAddtoCart={onAddtoCart}
-                isLoading={isLoading}
-                clearInput={clearInput}
+                // items={items}
+                // cartItems={cartItems}
+                // searchValue={searchValue}
+                // setSearchValue={setSearchValue}
+                // onChangeSearchInput={onChangeSearchInput}
+                // onAddToFavourite={onAddToFavourite}
+                // onAddtoCart={onAddtoCart}
+                // isLoading={isLoading}
+                // clearInput={clearInput}
               />
             }
           />
@@ -118,8 +118,8 @@ function App() {
             path="/favourites"
             element={
               <Favourites
-                items={favourites}
-                onAddToFavourite={onAddToFavourite}
+                // items={favourites}
+                // onAddToFavourite={onAddToFavourite}
               />
             }
           />
