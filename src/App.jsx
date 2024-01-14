@@ -3,12 +3,11 @@ import Header from './components/Header'
 import Drawer from './components/Drawer'
 import Home from './components/pages/Home'
 import Favourites from './components/pages/Favourites'
+import AppContext from './context'
 
-import { useState, useEffect, createContext } from 'react'
+import { useState, useEffect} from 'react'
 import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
-
-const AppContext = createContext({})
 
 function App() {
   const [items, setItems] = useState([])
@@ -86,7 +85,7 @@ function App() {
   }
 
   return (
-    <AppContext.Provider>
+    <AppContext.Provider value={{items, cartItems, favourites }}>
       <div className="wrapper">
         {cartOpened && (
           <Drawer
@@ -102,15 +101,15 @@ function App() {
             path="/"
             element={
               <Home
-                // items={items}
-                // cartItems={cartItems}
-                // searchValue={searchValue}
-                // setSearchValue={setSearchValue}
-                // onChangeSearchInput={onChangeSearchInput}
-                // onAddToFavourite={onAddToFavourite}
-                // onAddtoCart={onAddtoCart}
-                // isLoading={isLoading}
-                // clearInput={clearInput}
+                items={items}
+                cartItems={cartItems}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+                onChangeSearchInput={onChangeSearchInput}
+                onAddToFavourite={onAddToFavourite}
+                onAddtoCart={onAddtoCart}
+                isLoading={isLoading}
+                clearInput={clearInput}
               />
             }
           />
@@ -118,8 +117,8 @@ function App() {
             path="/favourites"
             element={
               <Favourites
-                // items={favourites}
-                // onAddToFavourite={onAddToFavourite}
+                items={favourites}
+                onAddToFavourite={onAddToFavourite}
               />
             }
           />

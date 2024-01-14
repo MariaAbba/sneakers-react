@@ -4,15 +4,15 @@ import search from '../../img/search.svg'
 import remove from '../../img/remove.svg'
 
 function Home({
-  // items,
-  // cartItems,
-  // searchValue,
-  // setSearchValue,
-  // onChangeSearchInput,
-  // onAddToFavourite,
-  // onAddtoCart,
-  // clearInput,
-  // isLoading,
+  items,
+  cartItems,
+  searchValue,
+  setSearchValue,
+  onChangeSearchInput,
+  onAddToFavourite,
+  onAddtoCart,
+  clearInput,
+  isLoading,
 }) {
   const renderItems = () => {
     const filteredItems = items.filter((item) =>
