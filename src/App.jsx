@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      setIsLoading(true)
+      try{
       const cartResponse = await axios.get(
         'https://657b154d394ca9e4af13a351.mockapi.io/cart'
       )
@@ -34,11 +34,15 @@ function App() {
       setCartItems(cartResponse.data)
       setFavourites(favouritesResponse.data)
       setItems(itemsResponse.data)
+    } catch (error){
+      alert('Mistake loading data')
     }
+  }
     fetchData()
   }, [])
 
   const onAddtoCart = (product) => {
+    console.log(product)
     axios.delete(
       `https://657b154d394ca9e4af13a351.mockapi.io/cart/${product.id}`
     )
@@ -53,11 +57,13 @@ function App() {
   }
 
   const onRemoveItem = (id) => {
+    console.log(id)
     axios.delete(`https://657b154d394ca9e4af13a351.mockapi.io/cart/${id}`)
     setCartItems((prev) => [...prev.filter((item) => item.id !== id)])
   }
 
   const onAddToFavourite = async (obj) => {
+        console.log(obj)
     try {
       if (favourites.find((favObj) => favObj.id === obj.id)) {
         axios.delete(
