@@ -42,7 +42,6 @@ function App() {
   }, [])
 
   const onAddtoCart = (product) => {
-    console.log(product)
     axios.delete(
       `https://657b154d394ca9e4af13a351.mockapi.io/cart/${product.id}`
     )
@@ -54,7 +53,7 @@ function App() {
       axios.post('https://657b154d394ca9e4af13a351.mockapi.io/cart', product)
       setCartItems((prev) => [...prev, product])
     }
-  }
+  } 
 
   const onRemoveItem = (id) => {
     console.log(id)
