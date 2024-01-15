@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      try{
+      // try{
       const cartResponse = await axios.get(
         'https://657b154d394ca9e4af13a351.mockapi.io/cart'
       )
@@ -31,12 +31,12 @@ function App() {
       )
       setIsLoading(false)
 
-      setCartItems(cartResponse.data)
-      setFavourites(favouritesResponse.data)
-      setItems(itemsResponse.data)
-    } catch (error){
-      alert('Mistake loading data')
-    }
+      setCartItems(cartResponse.data);
+      setFavourites(favouritesResponse.data);
+      setItems(itemsResponse.data);
+    // } catch (error){
+    //   alert('Mistake loading data')
+    // }
   }
     fetchData()
   }, [])
