@@ -5,11 +5,12 @@ import Home from './components/pages/Home'
 import Favourites from './components/pages/Favourites'
 import AppContext from './context'
 
-import { useState, useEffect, createContext } from 'react'
+import { useState, useEffect} from 'react'
 import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 
 // export const AppContext = createContext({})
+
 function App() {
   const [items, setItems] = useState([])
   const [searchValue, setSearchValue] = useState('')
@@ -90,8 +91,12 @@ function App() {
     setSearchValue('')
   }
 
+  const isItemAdded = (id) => {
+return cartItems.some((obj) => Number(obj.id) === Number(id))
+  }
+
   return (
-    <AppContext.Provider value={{ items, cartItems, favourites }}>
+    <AppContext.Provider value={{ items, cartItems, favourites, isItemAdded }}>
       <div className="wrapper">
         {cartOpened && (
           <Drawer
