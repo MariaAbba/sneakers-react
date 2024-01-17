@@ -5,10 +5,11 @@ import Home from './components/pages/Home'
 import Favourites from './components/pages/Favourites'
 import AppContext from './context'
 
-import { useState, useEffect} from 'react'
+import { useState, useEffect, createContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 
+// const AppContext = createContext({})
 function App() {
   const [items, setItems] = useState([])
   const [searchValue, setSearchValue] = useState('')
@@ -19,50 +20,50 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      // try{
-      const cartResponse = await axios.get(
-        'https://657b154d394ca9e4af13a351.mockapi.io/cart'
-      )
-      const favouritesResponse = await axios.get(
-        'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites'
-      )
-      const itemsResponse = await axios.get(
-        'https://657b154d394ca9e4af13a351.mockapi.io/items'
-      )
-      setIsLoading(false)
+      // setIsLoading(true)
+      try {
+        const cartResponse = await axios.get(
+          'https://657b154d394ca9e4af13a351.mockapi.io/cart'
+        )
+        const favouritesResponse = await axios.get(
+          'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites'
+        )
+        const itemsResponse = await axios.get(
+          'https://657b154d394ca9e4af13a351.mockapi.io/items'
+        )
 
-      setCartItems(cartResponse.data);
-      setFavourites(favouritesResponse.data);
-      setItems(itemsResponse.data);
-    // } catch (error){
-    //   alert('Mistake loading data')
-    // }
-  }
+        setIsLoading(false)
+
+        setCartItems(cartResponse.data)
+        setFavourites(favouritesResponse.data)
+        setItems(itemsResponse.data)
+      } catch (error) {
+        alert('Mistake loading data')
+      }
+    }
     fetchData()
   }, [])
 
   const onAddtoCart = (product) => {
     axios.delete(
       `https://657b154d394ca9e4af13a351.mockapi.io/cart/${product.id}`
-    )
-    if (cartItems.find((item) => Number(item.id) === Number(product.id))) {
-      setCartItems((prev) =>
-        prev.filter((item) => Number(item.id) !== Number(product.id))
       )
+      if (cartItems.find((item) => Number(item.id) === Number(product.id))) {
+        setCartItems((prev) =>
+        prev.filter((item) => Number(item.id) !== Number(product.id))
+        )
     } else {
       axios.post('https://657b154d394ca9e4af13a351.mockapi.io/cart', product)
       setCartItems((prev) => [...prev, product])
     }
-  } 
+  }
 
   const onRemoveItem = (id) => {
-    console.log(id)
     axios.delete(`https://657b154d394ca9e4af13a351.mockapi.io/cart/${id}`)
     setCartItems((prev) => [...prev.filter((item) => item.id !== id)])
   }
 
   const onAddToFavourite = async (obj) => {
-        console.log(obj)
     try {
       if (favourites.find((favObj) => favObj.id === obj.id)) {
         axios.delete(
@@ -90,7 +91,7 @@ function App() {
   }
 
   return (
-    <AppContext.Provider value={{items, cartItems, favourites }}>
+    <AppContext.Provider value={{ items, cartItems, favourites }}>
       <div className="wrapper">
         {cartOpened && (
           <Drawer
@@ -113,8 +114,8 @@ function App() {
                 onChangeSearchInput={onChangeSearchInput}
                 onAddToFavourite={onAddToFavourite}
                 onAddtoCart={onAddtoCart}
-                isLoading={isLoading}
                 clearInput={clearInput}
+                isLoading={isLoading}
               />
             }
           />

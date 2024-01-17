@@ -1,5 +1,4 @@
 import Card from '../../helpers/Card/Card'
-
 import search from '../../img/search.svg'
 import remove from '../../img/remove.svg'
 
@@ -17,13 +16,10 @@ function Home({
   const renderItems = () => {
     const filteredItems = items.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase()),
-    );
+    )
     return (isLoading ? [...Array(8)] : filteredItems).map((item, index) => (
       <Card
         key={index}
-        // title={item.title}
-        // price={item.price}
-        // img={item.img}
         onFavourite={(obj) => onAddToFavourite(obj)}
         onPlus={(obj) => onAddtoCart(obj)}
         added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
@@ -32,8 +28,9 @@ function Home({
       />
     ))
   }
+  
   return (
-    <div className="content ">
+    <div className="content "> 
       <div className=" d-flex align-center mb-40 justify-between">
         <h2 className="content__title">
           {searchValue ? `Search for "${searchValue}"` : 'All items'}
@@ -53,7 +50,7 @@ function Home({
             onChange={onChangeSearchInput}
             value={searchValue}
             type="text"
-            placeholder="Search for an item, color..."
+            placeholder="Search for an item, colour..."
           />
         </div>
       </div>
