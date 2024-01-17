@@ -9,7 +9,7 @@ import { useState, useEffect, createContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 
-// const AppContext = createContext({})
+// export const AppContext = createContext({})
 function App() {
   const [items, setItems] = useState([])
   const [searchValue, setSearchValue] = useState('')
