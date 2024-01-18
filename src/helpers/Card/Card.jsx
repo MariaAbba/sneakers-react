@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import ContentLoader from 'react-content-loader'
+import AppContext from '../../context'
+
 
 import heart from './../../img/heart.svg'
 import redHeart from './../../img/liked.svg'
@@ -20,6 +22,7 @@ const Card = ({
 }) => {
   const [isAdded, setIsAdded] = useState(added)
   const [isFavourite, setIsFavourite] = useState(bookmarked)
+  const { isItemAdded } = useContext(AppContext)
 
   const onClickPlus = () => {
     onPlus({ id, title, img, price })
