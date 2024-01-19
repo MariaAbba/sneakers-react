@@ -1,5 +1,5 @@
 import Card from '../../helpers/Card/Card'
-import AppContext from '../../context'
+
 import { useContext } from 'react'
 
 import search from '../../img/search.svg'
@@ -7,7 +7,6 @@ import remove from '../../img/remove.svg'
 
 function Home({
   items,
-  cartItems,
   searchValue,
   setSearchValue,
   onChangeSearchInput,
@@ -16,7 +15,7 @@ function Home({
   clearInput,
   isLoading,
 }) {
-  const { isItemAdded } = useContext(AppContext)
+
 
   const renderItems = () => {
     const filteredItems = items.filter((item) =>

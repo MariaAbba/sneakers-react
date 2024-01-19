@@ -2,14 +2,13 @@ import { useState, useContext } from 'react'
 import ContentLoader from 'react-content-loader'
 import AppContext from '../../context'
 
-
 import heart from './../../img/heart.svg'
 import redHeart from './../../img/liked.svg'
 import plus from './../../img/plus.svg'
 import checked from './../../img/checked.svg'
 import './card.scss'
 
-const Card = ({
+function Card({
   id,
   title,
   price,
@@ -19,14 +18,14 @@ const Card = ({
   bookmarked = false,
   added = false,
   loading = false,
-}) => {
-  const [isAdded, setIsAdded] = useState(added)
-  const [isFavourite, setIsFavourite] = useState(bookmarked)
+}) {
   const { isItemAdded } = useContext(AppContext)
+  const [isFavourite, setIsFavourite] = useState(bookmarked)
+
+  console.log(title, isItemAdded(id))
 
   const onClickPlus = () => {
     onPlus({ id, title, img, price })
-    setIsAdded(!isAdded)
   }
 
   const onClickFavourite = () => {
@@ -70,7 +69,7 @@ const Card = ({
             <img
               id="plus-btn"
               alt="plusIcon"
-              src={isAdded ? checked : plus}
+              src={isItemAdded(id) ? checked : plus}
               onClick={() => onClickPlus()}
             />
           </div>
