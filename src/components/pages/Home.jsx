@@ -1,7 +1,5 @@
 import Card from '../../helpers/Card/Card'
 
-import { useContext } from 'react'
-
 import search from '../../img/search.svg'
 import remove from '../../img/remove.svg'
 

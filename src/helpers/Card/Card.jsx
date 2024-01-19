@@ -21,8 +21,6 @@ function Card({
   const { isItemAdded } = useContext(AppContext)
   const [isFavourite, setIsFavourite] = useState(bookmarked)
 
-  console.log(title, isItemAdded(id))
-
   const onClickPlus = () => {
     onPlus({ id, title, img, price })
   }

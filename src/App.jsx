@@ -66,7 +66,7 @@ function App() {
 
   const onAddToFavourite = async (obj) => {
     try {
-      if (favourites.find((favObj) => favObj.id === obj.id)) {
+      if (favourites.find((favObj) => Number(favObj.id) === Number (obj.id))) {
         axios.delete(
           `https://657b154d394ca9e4af13a351.mockapi.io/favourites/${obj.id}`
         )
@@ -129,10 +129,7 @@ return cartItems.some((obj) => Number(obj.id) === Number(id))
           <Route
             path="/favourites"
             element={
-              <Favourites
-                items={favourites}
-                onAddToFavourite={onAddToFavourite}
-              />
+              <Favourites/>
             }
           />
         </Routes>
