@@ -96,7 +96,9 @@ return cartItems.some((obj) => Number(obj.id) === Number(id))
   }
 
   return (
-    <AppContext.Provider value={{ items, cartItems, favourites, isItemAdded }}>
+    <AppContext.Provider
+      value={{ items, cartItems, favourites, isItemAdded, onAddToFavourite }}
+    >
       <div className="wrapper">
         {cartOpened && (
           <Drawer

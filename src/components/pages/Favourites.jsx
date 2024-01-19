@@ -2,7 +2,7 @@ import {useContext} from 'react'
 import Card from '../../helpers/Card/Card'
 import  AppContext from '../../context'
 
-function Favourites({onAddToFavourite }) {
+function Favourites() {
 
   const {favourites} = useContext(AppContext)
 

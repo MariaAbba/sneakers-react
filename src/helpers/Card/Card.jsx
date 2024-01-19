@@ -16,7 +16,6 @@ function Card({
   onPlus,
   onFavourite,
   bookmarked = false,
-  added = false,
   loading = false,
 }) {
   const { isItemAdded } = useContext(AppContext)
