@@ -5,7 +5,7 @@ import Home from './components/pages/Home'
 import Favourites from './components/pages/Favourites'
 import AppContext from './context'
 
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 
@@ -46,13 +46,13 @@ function App() {
   }, [])
 
   const onAddtoCart = (product) => {
-    axios.delete(
-      `https://657b154d394ca9e4af13a351.mockapi.io/cart/${product.id}`
+    if (cartItems.find((item) => Number(item.id) === Number(product.id))) {
+      axios.delete(
+        `https://657b154d394ca9e4af13a351.mockapi.io/cart/${product.id}`
       )
-      if (cartItems.find((item) => Number(item.id) === Number(product.id))) {
-        setCartItems((prev) =>
+      setCartItems((prev) =>
         prev.filter((item) => Number(item.id) !== Number(product.id))
-        )
+      )
     } else {
       axios.post('https://657b154d394ca9e4af13a351.mockapi.io/cart', product)
       setCartItems((prev) => [...prev, product])
@@ -66,11 +66,13 @@ function App() {
 
   const onAddToFavourite = async (obj) => {
     try {
-      if (favourites.find((favObj) => Number(favObj.id) === Number (obj.id))) {
+      if (favourites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
         axios.delete(
           `https://657b154d394ca9e4af13a351.mockapi.io/favourites/${obj.id}`
         )
-        setFavourites((prev) => prev.filter((item) => item.id !== obj.id))
+             setFavourites((prev) =>
+               prev.filter((item) => Number(item.id) !== Number(obj.id))
+             )
       } else {
         const { data } = await axios.post(
           'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites',
@@ -92,7 +94,7 @@ function App() {
   }
 
   const isItemAdded = (id) => {
-return cartItems.some((obj) => Number(obj.id) === Number(id))
+    return cartItems.some((obj) => Number(obj.id) === Number(id))
   }
 
   return (
@@ -126,12 +128,7 @@ return cartItems.some((obj) => Number(obj.id) === Number(id))
               />
             }
           />
-          <Route
-            path="/favourites"
-            element={
-              <Favourites/>
-            }
-          />
+          <Route path="/favourites" element={<Favourites />} />
         </Routes>
       </div>
     </AppContext.Provider>
