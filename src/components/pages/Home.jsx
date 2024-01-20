@@ -13,8 +13,6 @@ function Home({
   clearInput,
   isLoading,
 }) {
-
-
   const renderItems = () => {
     const filteredItems = items.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase())

@@ -1,90 +1,71 @@
 import PropTypes from 'prop-types'
+import Info from './Info'
 import arrowRight from './../img/arrow-right.svg'
 import removeBtn from './../img/remove-btn.svg'
 import emptyCart from './../img/empty-cart.jpg'
-import arrowLeft from './../img/arrow.svg'
 
 function Drawer({ onClose, items = [], onRemove }) {
-  return (
-    <div className="drawer__overlay">
-      <div className="drawer">
-        <h2 className="drawer__title">
-          Shopping Bag
-          <img
-            onClick={() => onClose()}
-            className="remove-btn cu-p"
-            src={removeBtn}
-            alt="Close"
-          />
-        </h2>
-
-        {items.length > 0 ? (
-          <>
-            <div className="items">
-              {items.map((obj, index) => (
+  <div className="drawer__overlay">
+    <div className="drawer">
+      <h2 className="drawer__title">
+        Shopping Bag
+        <img
+          onClick={() => onClose()}
+          className="remove-btn cu-p"
+          src={removeBtn}
+          alt="Close"
+        />
+      </h2>
+      {items.length > 0 ? (
+        <div className="d-flx flex-column flex">
+          <div className="items">
+            {items.map((obj, index) => (
+              <div key={index} className="cartItem d-flex align-center mb-20">
                 <div
-                  key={index}
-                  className="cartItem d-flex align-center mb-20"
-                >
-                  <div
-                    className="cartItemImg"
-                    style={{ backgroundImage: `url(${obj.img})` }}
-                  ></div>
-                  <div className="mr-20">
-                    <p className="mb-5">{obj.title}</p>
-                    <b>{obj.price} £</b>
-                  </div>
-                  <img
-                    onClick={() => onRemove(obj.id)}
-                    className="remove-btn"
-                    src={removeBtn}
-                    alt="Remove icon"
-                  />
+                  className="cartItemImg"
+                  style={{ backgroundImage: `url(${obj.img})` }}
+                ></div>
+                <div className="mr-20">
+                  <p className="mb-5">{obj.title}</p>
+                  <b>{obj.price} £</b>
                 </div>
-              ))}
-            </div>
-            <div className="shoppingTotal">
-              <ul>
-                <li className="d-flex">
-                  <span>Total: </span>
-                  <div></div>
-                  <b>240 £</b>
-                </li>
-                <li className="d-flex">
-                  <span>VAT 5%: </span>
-                  <div></div>
-                  <b>58 £</b>
-                </li>
-              </ul>
-
-              <button className="greenButton">
-                Continue
-                <img src={arrowRight} alt="Arrow" />
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="cartEmpty d-flex align-center justify-center flex-column mb-20">
-            <img
-              className="mb-20"
-              width="120px"
-              height="120px"
-              src={emptyCart}
-              alt="empty cart"
-            />
-            <h2>The basket is empty</h2>
-            <p className="opacity-6">
-              To proceed with the purchase, add at least one item to the basket
-            </p>
-            <button onClick={onClose} className="greenButton">
-              <img src={arrowLeft} alt="arrow left" />
-              Go back
+                <img
+                  onClick={() => onRemove(obj.id)}
+                  className="remove-btn"
+                  src={removeBtn}
+                  alt="Remove icon"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="shoppingTotal">
+            <ul>
+              <li className="d-flex">
+                <span>Total: </span>
+                <div></div>
+                <b>240 £</b>
+              </li>
+              <li className="d-flex">
+                <span>VAT 5%: </span>
+                <div></div>
+                <b>58 £</b>
+              </li>
+            </ul>
+            <button className="greenButton">
+              Continue
+              <img src={arrowRight} alt="Arrow" />
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <Info
+          title="The cart is empty"
+          description="To proceed with shopping add at least one item"
+          image={emptyCart}
+        />
+      )}
     </div>
-  )
+  </div>
 }
 
 Drawer.propTypes = {
