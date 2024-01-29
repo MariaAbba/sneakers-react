@@ -1,6 +1,5 @@
 import Card from '../../helpers/Card/Card'
-
-import search from '../../img/search.svg'
+ import search from '../../img/search.svg'
 import remove from '../../img/remove.svg'
 
 function Home({
@@ -13,6 +12,7 @@ function Home({
   clearInput,
   isLoading,
 }) {
+
   const renderItems = () => {
     const filteredItems = items.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -22,7 +22,6 @@ function Home({
         key={index}
         onFavourite={(obj) => onAddToFavourite(obj)}
         onPlus={(obj) => onAddtoCart(obj)}
-        // added={isItemAdded(item && item.id)}
         loading={isLoading}
         {...item}
       />

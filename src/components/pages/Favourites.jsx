@@ -4,7 +4,7 @@ import  AppContext from '../../context'
 
 function Favourites() {
 
-  const {favourites, onAddToFavourite} = useContext(AppContext)
+  const {favourites, onAddToFavourite } = useContext(AppContext)
 
   return (
     <div className="content">

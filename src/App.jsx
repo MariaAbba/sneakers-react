@@ -13,9 +13,9 @@ import axios from 'axios'
 
 function App() {
   const [items, setItems] = useState([])
-  const [searchValue, setSearchValue] = useState('')
   const [cartItems, setCartItems] = useState([])
   const [favourites, setFavourites] = useState([])
+  const [searchValue, setSearchValue] = useState('')
   const [cartOpened, setCartOpened] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -60,8 +60,13 @@ function App() {
   }
 
   const onRemoveItem = (id) => {
-    axios.delete(`https://657b154d394ca9e4af13a351.mockapi.io/cart/${id}`)
-    setCartItems((prev) => [...prev.filter((item) => item.id !== id)])
+    try {
+      axios.delete(`https://657b154d394ca9e4af13a351.mockapi.io/cart/${id}`)
+      setCartItems((prev) => [...prev.filter((item) => item.id !== id)])
+    } catch (error) {
+      alert('Mistake deleting an item')
+      console.log(error)
+    }
   }
 
   const onAddToFavourite = async (obj) => {
@@ -70,9 +75,9 @@ function App() {
         axios.delete(
           `https://657b154d394ca9e4af13a351.mockapi.io/favourites/${obj.id}`
         )
-             setFavourites((prev) =>
-               prev.filter((item) => Number(item.id) !== Number(obj.id))
-             )
+        setFavourites((prev) =>
+          prev.filter((item) => Number(item.id) !== Number(obj.id))
+        )
       } else {
         const { data } = await axios.post(
           'https://6596e3ed6bb4ec36ca038517.mockapi.io/favourites',
@@ -99,7 +104,16 @@ function App() {
 
   return (
     <AppContext.Provider
-      value={{ items, cartItems, favourites, isItemAdded, onAddToFavourite, setCartOpened }}
+      value={{
+        items,
+        cartItems,
+        favourites,
+        isItemAdded,
+        onAddToFavourite,
+        // onAddToCart,
+        setCartOpened,
+        setCartItems,
+      }}
     >
       <div className="wrapper">
         {cartOpened && (
@@ -107,6 +121,7 @@ function App() {
             items={cartItems}
             onClose={() => setCartOpened(false)}
             onRemove={onRemoveItem}
+            opened={cartOpened}
           />
         )}
         {/* {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null} */}
